@@ -264,7 +264,9 @@ zcat /usr/share/zabbix-sql-scripts/postgresql/server.sql.gz | psql zabbix_db
 
 ![](https://github.com/sizik0ff/Diplom-Sys24/blob/main/img/10.png)
 
+
 Логи подтянулись автоматически, можем смотреть поток filebeat 
+
 
 ![](https://github.com/sizik0ff/Diplom-Sys24/blob/main/img/11.png)
 
@@ -273,9 +275,12 @@ zcat /usr/share/zabbix-sql-scripts/postgresql/server.sql.gz | psql zabbix_db
 
 ## Резервное копирование 
 
+Резервное копирование настроенно через [snapshots.tf](https://github.com/sizik0ff/Diplom-Sys24/blob/main/Diplom/snapshots.tf) , на ежедневные снимки, с хранением в 7 дней. 
 
 
+![](https://github.com/sizik0ff/Diplom-Sys24/blob/main/img/13.png)
 
+![](https://github.com/sizik0ff/Diplom-Sys24/blob/main/img/14.png)
 
 
 
