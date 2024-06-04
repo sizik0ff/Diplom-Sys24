@@ -89,7 +89,8 @@ Cоздайте ВМ, разверните на ней Elasticsearch. Устан
 5) Kibana-server
 6) Elasticsearch-server
 
-(![image](https://github.com/sizik0ff/Diplom-Sys24/assets/148323240/5cf3fd23-46a8-4bef-b94c-03338c0c8756)
+![image](https://github.com/sizik0ff/Diplom-Sys24/blob/main/img/1.png)
+![image](https://github.com/sizik0ff/Diplom-Sys24/blob/main/img/2.png)
 (прерывание отключенно для проверки) 
 
 
