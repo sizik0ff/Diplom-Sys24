@@ -111,15 +111,15 @@ Cоздайте ВМ, разверните на ней Elasticsearch. Устан
 
 Ansible считывает всю необходимую информацию из [hosts.cfg](https://github.com/sizik0ff/Diplom-Sys24/blob/main/Diplom/Ansible/hosts.cfg)
 
+Для которой используется шаблон: [hosts.tpl](https://github.com/sizik0ff/Diplom-Sys24/blob/main/Diplom/hosts.tpl) 
+
 ![image](https://github.com/sizik0ff/Diplom-Sys24/blob/main/img/9.png)
 
-Указано специальное команда, которая запускает SSH соединение через Bastion 
+Прописана специальное команда, которая запускает SSH соединение через Bastion 
 ```
 [all:vars]
 ansible_ssh_common_args="-o ProxyCommand=\"ssh -q ubuntu@158.160.118.144 -o IdentityFile=~/.ssh/bastion -o Port=22 -W %h:%p\""
 ```
-
-Для которой используется шаблон: [hosts.tpl](https://github.com/sizik0ff/Diplom-Sys24/blob/main/Diplom/hosts.tpl) 
 
 Проверка пинга всех хостов 
 
