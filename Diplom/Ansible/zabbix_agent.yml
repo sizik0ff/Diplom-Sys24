@@ -1,0 +1,41 @@
+- name: Установка Zabbix-agent и дополнительных пакетов
+  hosts: zabbix nginx kib elas  
+  become: yes
+  vars:
+      local_ip: "{{ ansible_host }}"
+
+  tasks:
+    - name: Обновляем кэш
+      apt:
+        update_cache: 
+
+    - name: Скачивание и установка пакета Zabbix-agent
+      apt:
+        name: 
+          - zabbix-agent
+        state: present
+
+    - name: Запуск сервиса Zabbix-agent
+      service:
+        name: zabbix-agent
+        state: started
+        enabled: yes
+
+    - name: Копируем фаил конфигурации агентов
+      template:
+        src: /home/sizik0ff/diplom/zabbix_agentd.conf
+        dest: /etc/zabbix/zabbix_agentd.conf
+        owner: root
+        group: root
+        mode: 0644
+
+    - name: Прописываем локальный ip в Хост
+      ansible.builtin.lineinfile:
+          path: /etc/zabbix/zabbix_agentd.conf
+          regexp: '^Hostname='
+          line: 'Hostname={{ local_ip }}'
+
+    - name: Перезапуск сервиса Zabbix-agent
+      service:
+        name: zabbix-agent
+        state: restarted

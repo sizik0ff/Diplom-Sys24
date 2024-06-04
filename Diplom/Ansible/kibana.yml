@@ -1,0 +1,39 @@
+- name: Установка Kibana и дополнительных пакетов
+  hosts: kib  
+  become: yes
+
+  tasks:
+    - name: Обновляем кэш
+      apt:
+        update_cache: yes
+    
+    - name: Установка пакетов apt-transport-https и gnupg2
+      apt:
+        name: 
+          - apt-transport-https
+          - gnupg2
+        state: present
+
+    - name: Скачивание и установка пакета Kibana
+      apt:
+        deb: https://mirror.yandex.ru/mirrors/elastic/8/pool/main/k/kibana/kibana-8.6.2-amd64.deb
+        state: present
+
+    - name: Запуск сервиса Kibana
+      service:
+        name: kibana
+        state: started
+        enabled: yes
+
+    - name: Копируем фаил конфигурации
+      template:
+        src: /home/sizik0ff/diplom/kibana.yml
+        dest: /etc/kibana/kibana.yml
+        owner: root
+        group: root
+        mode: 0644
+
+    - name: Перезапуск сервиса Kibana
+      service:
+        name: kibana
+        state: restarted

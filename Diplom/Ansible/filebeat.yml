@@ -1,0 +1,39 @@
+- name: Установка Filebeat и дополнительных пакетов
+  hosts: nginx   
+  become: yes
+
+  tasks:
+    - name: Обновляем кэш
+      apt:
+        update_cache: yes
+    
+    - name: Установка пакетов apt-transport-https и gnupg2
+      apt:
+        name: 
+          - apt-transport-https
+          - gnupg2
+        state: present
+
+    - name: Скачивание и установка пакета Filebeat
+      apt:
+        deb: https://mirror.yandex.ru/mirrors/elastic/8/pool/main/f/filebeat/filebeat-8.6.2-amd64.deb
+        state: present
+
+    - name: Копируем фаил конфигурации
+      template:
+        src: /home/sizik0ff/diplom/filebeat.yml
+        dest: /etc/filebeat/filebeat.yml
+        owner: root
+        group: root
+        mode: 0644
+
+    - name: Запуск сервиса Filebeat
+      service:
+        name: filebeat
+        state: started
+        enabled: yes
+
+    - name: Перезапуск сервиса nginx
+      service:
+        name: nginx
+        state: restarted

@@ -1,0 +1,107 @@
+# Install PostgreSQL on PostgreSQL-host
+- name: Установка и конфигурация psql
+  hosts: zabbix
+  gather_facts: true
+  become: true
+  tasks:
+
+    - name: Добавляем PostgreSQL 
+      lineinfile:
+        path: /etc/apt/sources.list.d/pgdg.list
+        line: "deb http://apt.postgresql.org/pub/repos/apt {{ ansible_distribution_release }}-pgdg main"
+        create: true
+
+    - name: Установка ключа PostgreSQL 
+      apt_key:
+        url: https://www.postgresql.org/media/keys/ACCC4CF8.asc
+        state: present
+
+    - name: Обновляем кэш
+      apt:
+        update_cache: yes
+
+    - name: Установка необходимых пакетов
+      when: ansible_distribution == 'Ubuntu'
+      become: yes
+      apt:
+        name:
+          - acl
+          - postgresql
+          - postgresql-contrib
+          - python3-pip
+          - python3-dev
+          - python3-venv
+          - python3-psycopg2
+        state: present    
+        
+    - name: Меняем конфигурационные файлы
+      when:
+        - ansible_distribution == 'Ubuntu'
+        - ansible_architecture == 'x86_64'
+      become: yes
+      block:
+        - lineinfile:
+            path: /etc/postgresql/16/main/postgresql.conf
+            insertafter: 'Connection Settings'
+            line: listen_addresses = '*'
+            state: present
+            backup: yes
+          register: pgsql_config
+        - debug:
+            msg: '{{ pgsql_config.changed }}'
+        - lineinfile:
+            path: /etc/postgresql/16/main/pg_hba.conf
+            insertafter: '# TYPE'
+            line: host all all 10.0.0.0/8 md5
+            state: present
+            backup: yes
+          register: pgsql_hba_config
+        - service:
+            name: postgresql
+            state: restarted
+          when: (pgsql_config.changed == true) or (pgsql_hba_config.changed == true)    
+    
+    
+    - name: Создаем БД zabbix
+      when:
+        - ansible_system == 'Linux'
+      become: yes
+      become_user: postgres
+      vars:
+        zabbix_database: zabbix_db
+        zabbix_user: ubuntu
+        zabbix_password: 123456
+        password_for_default_postgres_user: 123456
+      block:
+        - postgresql_user:
+            name: postgres
+            password: '{{ password_for_default_postgres_user }}'
+        - postgresql_db:
+            db: '{{ zabbix_database }}'
+            encoding: UTF-8
+            state: present
+        - postgresql_user:
+            db: '{{ zabbix_database }}'
+            name: '{{ zabbix_user }}'
+            password: '{{ zabbix_password }}'
+            state: present
+            expires: infinity
+            priv: CREATE,CONNECT,TEMPORARY
+        - postgresql_db:
+            db: '{{ zabbix_database }}'
+            owner: '{{ zabbix_user }}'
+            encoding: UTF-8
+            state: present
+        - postgresql_privs:
+            database: '{{ zabbix_database }}'
+            state: present
+            host: 127.0.0.1
+            privs: '{{ item }}'
+            type: database
+            roles: '{{ zabbix_user }}'
+            login: '{{ zabbix_user }}'
+            password: '{{ zabbix_password }}'
+          with_items:
+            - CREATE
+            - CONNECT
+            - TEMPORARY

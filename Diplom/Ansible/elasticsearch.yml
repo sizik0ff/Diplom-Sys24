@@ -1,0 +1,39 @@
+- name: Установка Elasticsearch и дополнительных пакетов
+  hosts: elas
+  become: yes
+
+  tasks:
+    - name: Обновляем кэш
+      apt:
+        update_cache: yes
+    
+    - name: Установка пакетов apt-transport-https и gnupg2
+      apt:
+        name: 
+          - apt-transport-https
+          - gnupg2
+        state: present
+
+    - name: Скачивание и установка пакета Elasticsearch
+      apt:
+        deb: https://mirror.yandex.ru/mirrors/elastic/8/pool/main/e/elasticsearch/elasticsearch-8.6.2-amd64.deb
+        state: present
+
+    - name: Запуск сервиса Elasticsearch
+      service:
+        name: elasticsearch
+        state: started
+        enabled: yes
+
+    - name: Копируем фаил конфигурации
+      template:
+        src: /home/sizik0ff/diplom/elasticsearch.yml
+        dest: /etc/elasticsearch/elasticsearch.yml
+        owner: root
+        group: root
+        mode: 0644
+
+    - name: Перезапуск сервиса Elasticsearch
+      service:
+        name: elasticsearch
+        state: restarted

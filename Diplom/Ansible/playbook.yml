@@ -1,0 +1,9 @@
+# Main playbook
+- import_playbook: nginx.yml
+- import_playbook: filebeat.yml
+- import_playbook: index.yml
+- import_playbook: elasticsearch.yml
+- import_playbook: kibana.yml
+- import_playbook: zabbix_agent.yml
+- import_playbook: psql.yml
+- import_playbook: zabbix_server.yml
