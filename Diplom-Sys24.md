@@ -247,18 +247,20 @@ zcat /usr/share/zabbix-sql-scripts/postgresql/server.sql.gz | psql zabbix_db
 
 ### Elasticsearch 
 Устанавливаем на хост elas , elasticsearch и копируем конфигурацию [elasticsearch.yml](https://github.com/sizik0ff/Diplom-Sys24/blob/main/Diplom/Ansible/elasticsearch.yml)
+
 Фаил конфигурации: [elasticsearch.yml](https://github.com/sizik0ff/Diplom-Sys24/blob/main/Diplom/elasticsearch.yml)
 
 ### Filebeat
 Устанавливаем filebeat на Server 1 и Server 2, для сбора логов и отправки их в elasticsearch, копируем фаил конфигурации. [filebeat.yml](https://github.com/sizik0ff/Diplom-Sys24/blob/main/Diplom/Ansible/filebeat.yml)
+
 Фаил конфигурации: [filebeat.yml](https://github.com/sizik0ff/Diplom-Sys24/blob/main/Diplom/filebeat.yml)
 
 ### Kibana 
+Устанавливаем Kibana на kib, копируем конфигурацию и ждем запуска [kibana.yml](https://github.com/sizik0ff/Diplom-Sys24/blob/main/Diplom/Ansible/kibana.yml)
 
+Фаил конфигурации: [kibana.yml](https://github.com/sizik0ff/Diplom-Sys24/blob/main/Diplom/kibana.yml))
 
-
-
-
+### Зайти на web Kibana <http://158.160.118.215:5601/login/>
 
 
 
