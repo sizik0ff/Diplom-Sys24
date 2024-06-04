@@ -83,3 +83,15 @@ Cоздайте ВМ, разверните на ней Elasticsearch. Устан
 А именно 2 одинаковых Web сервера
 Сервер под Zabbix, Kibana , Elasticsearch 
 
+
+## Сеть
+
+Добавляем настройки [security_group.tf](https://github.com/sizik0ff/Diplom-Sys24/blob/main/Diplom/security_group.tf) - для взаимодействия vm между собой, ключевым образом через bastion host 
+
+Для обеспечения концепции bastion host, используем фаил 
+[local_files.tf](https://github.com/sizik0ff/Diplom-Sys24/blob/main/Diplom/local_files.tf) который предоставляет ip адреса для Ansible.
+
+Ansible считывает всю необходимую информацию из [hosts.cfg](https://github.com/sizik0ff/Diplom-Sys24/blob/main/Diplom/Ansible/hosts.cfg)
+
+Для которой используется шаблон: [hosts.tpl](https://github.com/sizik0ff/Diplom-Sys24/blob/main/Diplom/hosts.tpl) 
+
