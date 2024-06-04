@@ -93,6 +93,7 @@ Cоздайте ВМ, разверните на ней Elasticsearch. Устан
 
 ![image](https://github.com/sizik0ff/Diplom-Sys24/blob/main/img/2.png)
 
+![image](https://github.com/sizik0ff/Diplom-Sys24/blob/main/img/15.png)
 
 Главный плейбук называется [playbook.yml](https://github.com/sizik0ff/Diplom-Sys24/blob/main/Diplom/Ansible/playbook.yml) 
 
