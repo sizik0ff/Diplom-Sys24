@@ -1,0 +1,2 @@
+server.host: 0.0.0.0
+elasticsearch.hosts: ["http://{{ hostvars['elas'].ansible_host }}:9200"]
