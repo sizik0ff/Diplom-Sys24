@@ -115,12 +115,9 @@ Ansible считывает всю необходимую информацию и
 
 Для которой используется шаблон: [hosts.tpl](https://github.com/sizik0ff/Diplom-Sys24/blob/main/Diplom/hosts.tpl) 
 
-![image](https://github.com/sizik0ff/Diplom-Sys24/blob/main/img/3.png)
-
 Проверка пинга всех хостов 
 
 ![image](https://github.com/sizik0ff/Diplom-Sys24/blob/main/img/3.png)
-
 
 Пример подключения по ssh через bastion 
 
