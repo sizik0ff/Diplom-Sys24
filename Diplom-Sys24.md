@@ -260,14 +260,18 @@ zcat /usr/share/zabbix-sql-scripts/postgresql/server.sql.gz | psql zabbix_db
 
 Фаил конфигурации: [kibana.yml](https://github.com/sizik0ff/Diplom-Sys24/blob/main/Diplom/kibana.yml))
 
-### Зайти на web Kibana <http://158.160.118.215:5601/login/>
+### Зайти на web Elasticsearch <http://158.160.118.215:5601/login/>
+
+![](https://github.com/sizik0ff/Diplom-Sys24/blob/main/img/10.png)
+
+Логи подтянулись автоматически, можем смотреть поток filebeat 
+
+![](https://github.com/sizik0ff/Diplom-Sys24/blob/main/img/11.png)
+
+![](https://github.com/sizik0ff/Diplom-Sys24/blob/main/img/12.png)
 
 
-
-
-
-
-
+## Резервное копирование 
 
 
 
