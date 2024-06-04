@@ -256,8 +256,7 @@ zcat /usr/share/zabbix-sql-scripts/postgresql/server.sql.gz | psql zabbix_db
 
 Далее установим Zabbix agent и заменим файлы конфигурации на все хосты [zabbix_agent.yml](https://github.com/sizik0ff/Diplom-Sys24/blob/main/Diplom/Ansible/zabbix_agent.yml)
 
-Файл конфигурации:
-[zabbix_agentd.conf](https://github.com/sizik0ff/Diplom-Sys24/blob/main/Diplom/zabbix_agentd.conf)
+Файл конфигурации [zabbix_agentd.conf](https://github.com/sizik0ff/Diplom-Sys24/blob/main/Diplom/zabbix_agentd.conf) , установит соединение с нашим Zabbix-server
 
 
 ## Логи
@@ -265,7 +264,7 @@ zcat /usr/share/zabbix-sql-scripts/postgresql/server.sql.gz | psql zabbix_db
 ### Elasticsearch 
 Устанавливаем на хост elas , elasticsearch и копируем конфигурацию плейбук:[elasticsearch.yml](https://github.com/sizik0ff/Diplom-Sys24/blob/main/Diplom/Ansible/elasticsearch.yml)
 
-Elastic работает, статус yellow из-за кол-ва реплик, не настраивал более 1.
+Elastic установился и работает , статус yellow из-за кол-ва реплик, не настраивал более 1.
 ```
 ubuntu@fhm6rgj8j62jmbjbaa4f:~$ curl -XGET 'localhost:9200/_cluster/health?pretty'
 {
@@ -296,9 +295,18 @@ ubuntu@fhm6rgj8j62jmbjbaa4f:~$
 Фаил конфигурации: [filebeat.yml](https://github.com/sizik0ff/Diplom-Sys24/blob/main/Diplom/filebeat.yml)
 
 ### Kibana 
-Устанавливаем Kibana на kib, копируем конфигурацию и ждем запуска плейбук: [kibana.yml](https://github.com/sizik0ff/Diplom-Sys24/blob/main/Diplom/Ansible/kibana.yml)
+Устанавливаем Kibana на kib, копируем конфигурацию и ждем запуска:
+
+Плейбук: [kibana.yml](https://github.com/sizik0ff/Diplom-Sys24/blob/main/Diplom/Ansible/kibana.yml)
 
 Фаил конфигурации: [kibana.yml](https://github.com/sizik0ff/Diplom-Sys24/blob/main/Diplom/kibana.yml)
+
+```
+~/diplom/ansible » ansible -i hosts.cfg -m shell -a 'cat /etc/kibana/kibana.yml' kib -b 
+kib | CHANGED | rc=0 >>
+server.host: 0.0.0.0
+elasticsearch.hosts: ["http://192.168.10.20:9200"]
+```
 
 ### Зайти на web Elasticsearch <http://158.160.118.215:5601/login/>
 
