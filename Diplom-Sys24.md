@@ -129,3 +129,75 @@ Ansible считывает всю необходимую информацию и
 Перейдем по ip адресу балансировщика и увидим одностраничный сайт : [158.160.165.106](http://158.160.165.106:80)
 
 ![image](https://github.com/sizik0ff/Diplom-Sys24/blob/main/img/5.png)
+
+Протестируем сайт: curl -v 
+
+```
+~/diplom/ansible » curl -v http://158.160.165.106:80                                                                                                                          
+*   Trying 158.160.165.106:80...
+* Connected to 158.160.165.106 (158.160.165.106) port 80 (#0)
+> GET / HTTP/1.1
+> Host: 158.160.165.106
+> User-Agent: curl/7.81.0
+> Accept: */*
+> 
+* Mark bundle as not supporting multiuse
+< HTTP/1.1 200 OK
+< server: ycalb
+< date: Tue, 04 Jun 2024 07:35:08 GMT
+< content-type: text/html
+< content-length: 1186
+< last-modified: Mon, 03 Jun 2024 04:01:57 GMT
+< etag: "665d4035-4a2"
+< accept-ranges: bytes
+< 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Визитка Системного администратора</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+    .header {
+        background-color: #333;
+        color: white;
+        text-align: center;
+        padding: 10px 0;
+    }
+    .content {
+        text-align: center;
+        margin-top: 20px;
+    }
+    img {
+        max-width: 100%;
+        height: auto;
+        margin-top: 20px;
+    }
+    .footer {
+        background-color: #333;
+        color: white;
+        text-align: center;
+        padding: 10px 0;
+    }
+</style>
+</head>
+<body>
+    <div class="header">
+        <h1>Дипломная работа по профессии системный администратор</h1>
+    </div>
+    <div class="content">
+        <p>Участник группы SYS-24 Netology</p>
+        <p>Спасибо netology.ru за обучение!</p>
+    </div>
+    <div class="footer">
+        <p>&copy; Сизиков Максим, 2024</p>
+    </div>
+</body>
+</html>
+* Connection #0 to host 158.160.165.106 left intact
+```
