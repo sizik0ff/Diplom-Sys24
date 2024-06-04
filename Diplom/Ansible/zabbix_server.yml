@@ -31,23 +31,8 @@
         group: root
         mode: 0644
 
-#    - name: Перезапускаем Zabbix Server, Zabbix Agent, Apache2
-#      systemd:
-#        name: "{{ item }}"
-#        state: restarted
-#        enabled: yes
-#      with_items:
-#        - zabbix-server
-#        - zabbix-agent
-#        - apache2
-
-#    - name: Импортируем Zabbix SQL schema
-#      command: zcat /usr/share/zabbix-sql-scripts/postgresql/server.sql.gz | psql zabbix_db
-#      become: true
-
-
 # zcat /usr/share/zabbix-sql-scripts/postgresql/server.sql.gz | sudo -u zabbix psql zabbix
 # Загруить свой фаил конфигурации в /etc/zabbix/zabbix_server.conf
 # systemctl restart zabbix-server zabbix-agent apache2
 # systemctl enable zabbix-server zabbix-agent apache2
-#
+
