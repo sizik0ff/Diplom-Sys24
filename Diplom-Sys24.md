@@ -75,13 +75,22 @@ Cоздайте ВМ, разверните на ней Elasticsearch. Устан
 
 Устанавливаем Terraform и Ansible на основную машину 
 
-Отдельно создадим сервер под Bastion для управления остальными 
-
 Всю инфраструктуру описываем в [main.tf](https://github.com/sizik0ff/Diplom-Sys24/blob/main/Diplom/main.tf) 
-Описываем Настройки сети, таргет группу , Сетевой балансировщик 
 
-А именно 2 одинаковых Web сервера
-Сервер под Zabbix, Kibana , Elasticsearch 
+Вся необходимая информация для авторизации (token_id,cloud_id,folder_id,zone_a,zone_b) вынесены в переменные  terraform.tfvars 
+
+Отдельно создан фаил с переменными [variables.tf](https://github.com/sizik0ff/Diplom-Sys24/blob/main/Diplom/variables.tf)
+
+Создаем:
+1) Server 1 
+2) Server 2 
+3) Bastion
+4) Zabbix-server
+5) Kibana-server
+6) Elasticsearch-server
+
+(![image](https://github.com/sizik0ff/Diplom-Sys24/assets/148323240/5cf3fd23-46a8-4bef-b94c-03338c0c8756)
+(прерывание отключенно для проверки) 
 
 
 ## Сеть
