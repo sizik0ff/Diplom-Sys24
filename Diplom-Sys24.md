@@ -109,6 +109,9 @@ Cоздайте ВМ, разверните на ней Elasticsearch. Устан
 [local_files.tf](https://github.com/sizik0ff/Diplom-Sys24/blob/main/Diplom/local_files.tf) который предоставляет ip адреса для Ansible.
 
 Ansible считывает всю необходимую информацию из [hosts.cfg](https://github.com/sizik0ff/Diplom-Sys24/blob/main/Diplom/Ansible/hosts.cfg)
+
+![image](https://github.com/sizik0ff/Diplom-Sys24/blob/main/img/9.png)
+
 Для которой используется шаблон: [hosts.tpl](https://github.com/sizik0ff/Diplom-Sys24/blob/main/Diplom/hosts.tpl) 
 
 ![image](https://github.com/sizik0ff/Diplom-Sys24/blob/main/img/3.png)
@@ -234,3 +237,7 @@ zcat /usr/share/zabbix-sql-scripts/postgresql/server.sql.gz | psql zabbix_db
 ### Zabbix server доступен по адресу: <http://158.160.112.213/zabbix/>
 ### Логин: Admin
 ### Пароль: zabbix
+
+![image](https://github.com/sizik0ff/Diplom-Sys24/blob/main/img/7.png)
+
+![image](https://github.com/sizik0ff/Diplom-Sys24/blob/main/img/8.png)
