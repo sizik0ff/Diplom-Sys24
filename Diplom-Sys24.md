@@ -149,7 +149,7 @@ ansible_ssh_common_args="-o ProxyCommand=\"ssh -q ubuntu@158.160.118.144 -o Iden
 После активируется плейбук, который установит нужную нам страницу сайта на сервера [index.yml](https://github.com/sizik0ff/Diplom-Sys24/blob/main/Diplom/Ansible/index.yml)
 
 
-Перейдем по ip адресу балансировщика и увидим одностраничный сайт : [158.160.165.106](http://158.160.165.106:80)
+## Перейдем по ip адресу балансировщика и увидим одностраничный сайт : [158.160.165.106](http://158.160.165.106:80)
 
 ![image](https://github.com/sizik0ff/Diplom-Sys24/blob/main/img/5.png)
 
