@@ -1,4 +1,4 @@
-
+![image](https://github.com/sizik0ff/Diplom-Sys24/assets/148323240/ba9e16b4-6699-4acf-b538-49eb1108c56e)
 #  Дипломная работа по профессии «Системный администратор»
 
 Содержание
@@ -95,6 +95,9 @@ Cоздайте ВМ, разверните на ней Elasticsearch. Устан
 ![image](https://github.com/sizik0ff/Diplom-Sys24/blob/main/img/2.png)
 
 
+Главный плейбук называется [playbook.yml](https://github.com/sizik0ff/Diplom-Sys24/blob/main/Diplom/Ansible/playbook.yml) 
+При его запуске происходит установка и настройка всех необходимых утилит,программ,конфигураций и т.д 
+Но далее каждый плейбук я буду описывать отдельно. 
 
 
 ## Сеть
@@ -117,7 +120,13 @@ Ansible считывает всю необходимую информацию и
 
 ![image](https://github.com/sizik0ff/Diplom-Sys24/blob/main/img/4.png)
 
-Перейдем по ip адресу балансировщика и увидим одностраничный сайт : [158.160.165.106]
+Теперь установим на него Nginx, с помощью роли geerlingguy.nginx [nginx.yml](https://github.com/sizik0ff/Diplom-Sys24/blob/main/Diplom/Ansible/nginx.yml)
+
+После активируется плейбук который установит нужную нам страницу сайта на сервера [index.yml](https://github.com/sizik0ff/Diplom-Sys24/blob/main/Diplom/Ansible/index.yml)
 
 
-![image](https://github.com/sizik0ff/Diplom-Sys24/blob/main/img/4.png)
+
+
+Перейдем по ip адресу балансировщика и увидим одностраничный сайт : [158.160.165.106](158.160.165.106)
+
+![image](https://github.com/sizik0ff/Diplom-Sys24/blob/main/img/5.png)
