@@ -201,3 +201,18 @@ Ansible считывает всю необходимую информацию и
 </html>
 * Connection #0 to host 158.160.165.106 left intact
 ```
+## Мониторинг 
+
+Для Мониторинга наших серверов установим Zabbix сервер на VM 
+
+Для начала установим и создадим базу данных PostgreSQL с помощью плейбука [psql.yml](https://github.com/sizik0ff/Diplom-Sys24/blob/main/Diplom/Ansible/psql.yml)
+
+Установим сам Zabbix на сервер [zabbix_server.yml](https://github.com/sizik0ff/Diplom-Sys24/blob/main/Diplom/Ansible/zabbix_server.yml)
+
+Осталось зайти на сервер и выполнить команду:
+```
+zcat /usr/share/zabbix-sql-scripts/postgresql/server.sql.gz | psql zabbix_db
+```
+Запускаем zabbix-server.service и готово. 
+
+![image](https://github.com/sizik0ff/Diplom-Sys24/blob/main/img/6.png)
