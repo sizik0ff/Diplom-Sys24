@@ -107,6 +107,17 @@ Cоздайте ВМ, разверните на ней Elasticsearch. Устан
 Ansible считывает всю необходимую информацию из [hosts.cfg](https://github.com/sizik0ff/Diplom-Sys24/blob/main/Diplom/Ansible/hosts.cfg)
 Для которой используется шаблон: [hosts.tpl](https://github.com/sizik0ff/Diplom-Sys24/blob/main/Diplom/hosts.tpl) 
 
-Проверка пинга всех хостов 
 ![image](https://github.com/sizik0ff/Diplom-Sys24/blob/main/img/3.png)
 
+Проверка пинга всех хостов 
+
+## Сайт 
+
+Ранее мы создали Server 1 и Server 2 для нашего сайта, а так же создали Target Group,Backend Group,HTTP router,Application load balancer
+
+![image](https://github.com/sizik0ff/Diplom-Sys24/blob/main/img/4.png)
+
+Перейдем по ip адресу балансировщика и увидим одностраничный сайт : [158.160.165.106]
+
+
+![image](https://github.com/sizik0ff/Diplom-Sys24/blob/main/img/4.png)
