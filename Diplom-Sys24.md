@@ -90,8 +90,11 @@ Cоздайте ВМ, разверните на ней Elasticsearch. Устан
 6) Elasticsearch-server
 
 ![image](https://github.com/sizik0ff/Diplom-Sys24/blob/main/img/1.png)
-![image](https://github.com/sizik0ff/Diplom-Sys24/blob/main/img/2.png)
 (прерывание отключенно для проверки) 
+
+![image](https://github.com/sizik0ff/Diplom-Sys24/blob/main/img/2.png)
+
+
 
 
 ## Сеть
@@ -102,6 +105,8 @@ Cоздайте ВМ, разверните на ней Elasticsearch. Устан
 [local_files.tf](https://github.com/sizik0ff/Diplom-Sys24/blob/main/Diplom/local_files.tf) который предоставляет ip адреса для Ansible.
 
 Ansible считывает всю необходимую информацию из [hosts.cfg](https://github.com/sizik0ff/Diplom-Sys24/blob/main/Diplom/Ansible/hosts.cfg)
-
 Для которой используется шаблон: [hosts.tpl](https://github.com/sizik0ff/Diplom-Sys24/blob/main/Diplom/hosts.tpl) 
+
+Проверка пинга всех хостов 
+![image](https://github.com/sizik0ff/Diplom-Sys24/blob/main/img/3.png)
 
