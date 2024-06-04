@@ -75,7 +75,7 @@ Cоздайте ВМ, разверните на ней Elasticsearch. Устан
 
 Устанавливаем Terraform и Ansible на основную машину 
 
-Всю инфраструктуру описываем в [main.tf](https://github.com/sizik0ff/Diplom-Sys24/blob/main/Diplom/main.tf) 
+# Всю инфраструктуру описываем в [main.tf](https://github.com/sizik0ff/Diplom-Sys24/blob/main/Diplom/main.tf) 
 
 Вся необходимая информация для авторизации (token_id,cloud_id,folder_id,zone_a,zone_b) вынесены в переменные  terraform.tfvars 
 
@@ -95,19 +95,21 @@ Cоздайте ВМ, разверните на ней Elasticsearch. Устан
 ![image](https://github.com/sizik0ff/Diplom-Sys24/blob/main/img/2.png)
 
 
-Главный плейбук называется [playbook.yml](https://github.com/sizik0ff/Diplom-Sys24/blob/main/Diplom/Ansible/playbook.yml) 
-При его запуске происходит установка и настройка всех необходимых утилит,программ,конфигураций и т.д 
-Но далее каждый плейбук я буду описывать отдельно. 
+# Главный плейбук называется [playbook.yml](https://github.com/sizik0ff/Diplom-Sys24/blob/main/Diplom/Ansible/playbook.yml) 
+
+# При его запуске происходит установка и настройка всех необходимых утилит,программ,конфигураций и т.д 
+
+# Но далее каждый плейбук я буду описывать отдельно. 
 
 
 ## Сеть
 
-Добавляем настройки [security_group.tf](https://github.com/sizik0ff/Diplom-Sys24/blob/main/Diplom/security_group.tf) - для взаимодействия vm между собой, ключевым образом через bastion host 
+# Добавляем настройки [security_group.tf](https://github.com/sizik0ff/Diplom-Sys24/blob/main/Diplom/security_group.tf) - для взаимодействия vm между собой, ключевым образом через bastion host 
 
 Для обеспечения концепции bastion host, используем фаил 
 [local_files.tf](https://github.com/sizik0ff/Diplom-Sys24/blob/main/Diplom/local_files.tf) который предоставляет ip адреса для Ansible.
 
-Ansible считывает всю необходимую информацию из [hosts.cfg](https://github.com/sizik0ff/Diplom-Sys24/blob/main/Diplom/Ansible/hosts.cfg)
+# Ansible считывает всю необходимую информацию из [hosts.cfg](https://github.com/sizik0ff/Diplom-Sys24/blob/main/Diplom/Ansible/hosts.cfg)
 Для которой используется шаблон: [hosts.tpl](https://github.com/sizik0ff/Diplom-Sys24/blob/main/Diplom/hosts.tpl) 
 
 ![image](https://github.com/sizik0ff/Diplom-Sys24/blob/main/img/3.png)
@@ -125,8 +127,6 @@ Ansible считывает всю необходимую информацию и
 После активируется плейбук который установит нужную нам страницу сайта на сервера [index.yml](https://github.com/sizik0ff/Diplom-Sys24/blob/main/Diplom/Ansible/index.yml)
 
 
-
-
-Перейдем по ip адресу балансировщика и увидим одностраничный сайт : [158.160.165.106](158.160.165.106)
+Перейдем по ip адресу балансировщика и увидим одностраничный сайт : [158.160.165.106](http://158.160.165.106:80)
 
 ![image](https://github.com/sizik0ff/Diplom-Sys24/blob/main/img/5.png)
