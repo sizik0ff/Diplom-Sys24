@@ -115,7 +115,8 @@ Ansible считывает всю необходимую информацию и
 
 ![image](https://github.com/sizik0ff/Diplom-Sys24/blob/main/img/9.png)
 
-Прописана специальное команда, которая запускает SSH соединение через Bastion 
+Прописано правило , которое запускает SSH соединение через Bastion
+ 
 ```
 [all:vars]
 ansible_ssh_common_args="-o ProxyCommand=\"ssh -q ubuntu@158.160.118.144 -o IdentityFile=~/.ssh/bastion -o Port=22 -W %h:%p\""
