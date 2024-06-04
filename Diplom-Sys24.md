@@ -119,6 +119,13 @@ Ansible считывает всю необходимую информацию и
 
 Проверка пинга всех хостов 
 
+![image](https://github.com/sizik0ff/Diplom-Sys24/blob/main/img/3.png)
+
+
+Пример подключения по ssh через bastion 
+
+![image](https://github.com/sizik0ff/Diplom-Sys24/blob/main/img/16.png)
+
 ## Сайт 
 
 Ранее мы создали Server 1 и Server 2 для нашего сайта, а так же создали Target Group,Backend Group,HTTP router,Application load balancer
