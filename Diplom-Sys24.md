@@ -203,16 +203,34 @@ Ansible считывает всю необходимую информацию и
 ```
 ## Мониторинг 
 
+### Zabbix-server
+
 Для Мониторинга наших серверов установим Zabbix сервер на VM 
 
 Для начала установим и создадим базу данных PostgreSQL с помощью плейбука [psql.yml](https://github.com/sizik0ff/Diplom-Sys24/blob/main/Diplom/Ansible/psql.yml)
 
-Установим сам Zabbix на сервер [zabbix_server.yml](https://github.com/sizik0ff/Diplom-Sys24/blob/main/Diplom/Ansible/zabbix_server.yml)
+Установим сам Zabbix на сервер и заменим файл конфигурации на свой [zabbix_server.yml](https://github.com/sizik0ff/Diplom-Sys24/blob/main/Diplom/Ansible/zabbix_server.yml) 
+
+Файл конфигурации:
+[zabbix_server.conf](https://github.com/sizik0ff/Diplom-Sys24/blob/main/Diplom/zabbix_server.conf)
 
 Осталось зайти на сервер и выполнить команду:
 ```
 zcat /usr/share/zabbix-sql-scripts/postgresql/server.sql.gz | psql zabbix_db
 ```
-Запускаем zabbix-server.service и готово. 
+Запускаем zabbix-server.service.
 
 ![image](https://github.com/sizik0ff/Diplom-Sys24/blob/main/img/6.png)
+
+После заходим на админку, прописываем хостов, создаем удобные графики и списки. 
+
+### Zabbix-agentd
+
+Далее установим Zabbix agent и заменим файлы конфигурации на все хосты [zabbix_agent.yml](https://github.com/sizik0ff/Diplom-Sys24/blob/main/Diplom/Ansible/zabbix_agent.yml)
+
+Файл конфигурации:
+[zabbix_agentd.conf](https://github.com/sizik0ff/Diplom-Sys24/blob/main/Diplom/zabbix_agentd.conf)
+
+### Zabbix server доступен по адресу: <http://158.160.112.213/zabbix/>
+### Логин: Admin
+### Пароль: zabbix
