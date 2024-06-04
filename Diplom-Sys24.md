@@ -113,6 +113,12 @@ Ansible считывает всю необходимую информацию и
 
 ![image](https://github.com/sizik0ff/Diplom-Sys24/blob/main/img/9.png)
 
+Указано специальное команда, которая запускает SSH соединение через Bastion 
+```
+[all:vars]
+ansible_ssh_common_args="-o ProxyCommand=\"ssh -q ubuntu@158.160.118.144 -o IdentityFile=~/.ssh/bastion -o Port=22 -W %h:%p\""
+```
+
 Для которой используется шаблон: [hosts.tpl](https://github.com/sizik0ff/Diplom-Sys24/blob/main/Diplom/hosts.tpl) 
 
 Проверка пинга всех хостов 
@@ -249,6 +255,29 @@ zcat /usr/share/zabbix-sql-scripts/postgresql/server.sql.gz | psql zabbix_db
 
 ### Elasticsearch 
 Устанавливаем на хост elas , elasticsearch и копируем конфигурацию плейбук:[elasticsearch.yml](https://github.com/sizik0ff/Diplom-Sys24/blob/main/Diplom/Ansible/elasticsearch.yml)
+
+Elastic работает, статус yellow из-за кол-ва реплик, не настраивал более 1.
+```
+ubuntu@fhm6rgj8j62jmbjbaa4f:~$ curl -XGET 'localhost:9200/_cluster/health?pretty'
+{
+  "cluster_name" : "sizik0ff-elk",
+  "status" : "yellow",
+  "timed_out" : false,
+  "number_of_nodes" : 1,
+  "number_of_data_nodes" : 1,
+  "active_primary_shards" : 10,
+  "active_shards" : 10,
+  "relocating_shards" : 0,
+  "initializing_shards" : 0,
+  "unassigned_shards" : 1,
+  "delayed_unassigned_shards" : 0,
+  "number_of_pending_tasks" : 0,
+  "number_of_in_flight_fetch" : 0,
+  "task_max_waiting_in_queue_millis" : 0,
+  "active_shards_percent_as_number" : 90.9090909090909
+}
+ubuntu@fhm6rgj8j62jmbjbaa4f:~$ 
+```
 
 Фаил конфигурации: [elasticsearch.yml](https://github.com/sizik0ff/Diplom-Sys24/blob/main/Diplom/elasticsearch.yml)
 
