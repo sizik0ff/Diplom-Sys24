@@ -226,18 +226,7 @@ Ansible считывает всю необходимую информацию и
 ```
 zcat /usr/share/zabbix-sql-scripts/postgresql/server.sql.gz | psql zabbix_db
 ```
-Запускаем zabbix-server.service.
-
-![image](https://github.com/sizik0ff/Diplom-Sys24/blob/main/img/6.png)
-
 После заходим на админку, прописываем хостов, создаем удобные графики и списки. 
-
-### Zabbix-agentd
-
-Далее установим Zabbix agent и заменим файлы конфигурации на все хосты [zabbix_agent.yml](https://github.com/sizik0ff/Diplom-Sys24/blob/main/Diplom/Ansible/zabbix_agent.yml)
-
-Файл конфигурации:
-[zabbix_agentd.conf](https://github.com/sizik0ff/Diplom-Sys24/blob/main/Diplom/zabbix_agentd.conf)
 
 ### Zabbix server доступен по адресу: <http://158.160.112.213/zabbix/>
 ### Логин: Admin
@@ -246,6 +235,14 @@ zcat /usr/share/zabbix-sql-scripts/postgresql/server.sql.gz | psql zabbix_db
 ![image](https://github.com/sizik0ff/Diplom-Sys24/blob/main/img/7.png)
 
 ![image](https://github.com/sizik0ff/Diplom-Sys24/blob/main/img/8.png)
+
+
+### Zabbix-agentd
+
+Далее установим Zabbix agent и заменим файлы конфигурации на все хосты [zabbix_agent.yml](https://github.com/sizik0ff/Diplom-Sys24/blob/main/Diplom/Ansible/zabbix_agent.yml)
+
+Файл конфигурации:
+[zabbix_agentd.conf](https://github.com/sizik0ff/Diplom-Sys24/blob/main/Diplom/zabbix_agentd.conf)
 
 
 ## Логи
