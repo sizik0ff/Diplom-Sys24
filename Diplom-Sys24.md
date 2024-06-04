@@ -136,7 +136,15 @@ ansible_ssh_common_args="-o ProxyCommand=\"ssh -q ubuntu@158.160.118.144 -o Iden
 
 ![image](https://github.com/sizik0ff/Diplom-Sys24/blob/main/img/4.png)
 
+![image](https://github.com/sizik0ff/Diplom-Sys24/blob/main/img/17.png)
+
+![image](https://github.com/sizik0ff/Diplom-Sys24/blob/main/img/18.png)
+
+![image](https://github.com/sizik0ff/Diplom-Sys24/blob/main/img/19.png)
+
+
 Теперь установим на него Nginx, с помощью роли geerlingguy.nginx [nginx.yml](https://github.com/sizik0ff/Diplom-Sys24/blob/main/Diplom/Ansible/nginx.yml)
+
 
 После активируется плейбук, который установит нужную нам страницу сайта на сервера [index.yml](https://github.com/sizik0ff/Diplom-Sys24/blob/main/Diplom/Ansible/index.yml)
 
