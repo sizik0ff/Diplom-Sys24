@@ -147,13 +147,6 @@ resource "yandex_vpc_security_group" "elasticsearch-sg" {
     port              = 9200
   }
 
-  ingress {
-    protocol          = "TCP"
-    description       = "Rule for bastion ssh"
-    security_group_id = yandex_vpc_security_group.bastion-sg.id
-    port              = 22
-  }
-
   egress {
     protocol       = "ANY"
     description    = "Rule out"
