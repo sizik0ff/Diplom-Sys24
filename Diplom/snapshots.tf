@@ -14,10 +14,10 @@ resource "yandex_compute_snapshot_schedule" "snapshot" {
   }
 
   disk_ids = [
-    "${yandex_compute_instance.bast.boot_disk.0.disk_id}",
-    "${yandex_compute_instance.vm-1.boot_disk.0.disk_id}",
-    "${yandex_compute_instance.vm-2.boot_disk.0.disk_id}",
-    "${yandex_compute_instance.zabbix.boot_disk.0.disk_id}",
-    "${yandex_compute_instance.elas.boot_disk.0.disk_id}",
-    "${yandex_compute_instance.kib.boot_disk.0.disk_id}", ]
+    "[yandex_compute_instance.bast.boot_disk.0.disk_id],
+    "[yandex_compute_instance.vm-1.boot_disk.0.disk_id],
+    "[yandex_compute_instance.vm-2.boot_disk.0.disk_id],
+    "[yandex_compute_instance.zabbix.boot_disk.0.disk_id],
+    "[yandex_compute_instance.elas.boot_disk.0.disk_id],
+    "[yandex_compute_instance.kib.boot_disk.0.disk_id], ]
 }
