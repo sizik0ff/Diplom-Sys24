@@ -69,14 +69,6 @@ resource "yandex_vpc_security_group" "private-sg" {
 
   egress {
     protocol       = "ANY"
-    description    = "Zabbix out"
-    v4_cidr_blocks = ["0.0.0.0/0"]
-    from_port      = 10050
-    to_port        = 10051
-  }
-
-  egress {
-    protocol       = "ANY"
     description    = "allow any outgoing connections"
     v4_cidr_blocks = ["0.0.0.0/0"]
   }
