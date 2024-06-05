@@ -1,7 +1,7 @@
 # Inventory file for Ansible
 
 resource "local_file" "hosts" {
-  content = templatefile("~/diplom/hosts.tpl",
+  content = templatefile("/home/sizik0ff/diplom/hosts.tpl",
     
     {
       vm1_ip = yandex_compute_instance.vm-1.network_interface[0].ip_address
