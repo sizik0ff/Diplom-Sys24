@@ -171,7 +171,6 @@ ansible_ssh_common_args="-o ProxyCommand=\"ssh -q ubuntu@158.160.172.204 -o Iden
 Протестируем сайт: curl -v 
 
 ```
-~/diplom/ansible » curl -v http://158.160.160.53:80                                                                                                                       sizik0ff@VD
 *   Trying 158.160.160.53:80...
 * Connected to 158.160.160.53 (158.160.160.53) port 80 (#0)
 > GET / HTTP/1.1
@@ -182,7 +181,7 @@ ansible_ssh_common_args="-o ProxyCommand=\"ssh -q ubuntu@158.160.172.204 -o Iden
 * Mark bundle as not supporting multiuse
 < HTTP/1.1 200 OK
 < server: ycalb
-< date: Sat, 08 Jun 2024 10:41:54 GMT
+< date: Sat, 08 Jun 2024 10:55:29 GMT
 < content-type: text/html
 < content-length: 1186
 < last-modified: Sat, 08 Jun 2024 07:23:10 GMT
