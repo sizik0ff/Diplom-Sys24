@@ -76,6 +76,7 @@ Cоздайте ВМ, разверните на ней Elasticsearch. Устан
 
 Всю инфраструктуру описываем в [main.tf](https://github.com/sizik0ff/Diplom-Sys24/blob/main/Diplom/main.tf) 
 
+
 Вся необходимая информация для авторизации (token_id,cloud_id,folder_id,zone_a,zone_b) вынесены в переменные  terraform.tfvars 
 
 Отдельно создан фаил с переменными [variables.tf](https://github.com/sizik0ff/Diplom-Sys24/blob/main/Diplom/variables.tf)
@@ -88,10 +89,9 @@ Cоздайте ВМ, разверните на ней Elasticsearch. Устан
 5) Kibana-server
 6) Elasticsearch-server
 
-![image](https://github.com/sizik0ff/Diplom-Sys24/blob/main/img/1.png)
-(прерывание отключенно для проверки) 
+![image](https://github.com/sizik0ff/Diplom-Sys24/blob/main/img/1.1.png)
 
-![image](https://github.com/sizik0ff/Diplom-Sys24/blob/main/img/2.png)
+![image](https://github.com/sizik0ff/Diplom-Sys24/blob/main/img/1.png)
 
 ![image](https://github.com/sizik0ff/Diplom-Sys24/blob/main/img/15.png)
 
@@ -103,6 +103,12 @@ Cоздайте ВМ, разверните на ней Elasticsearch. Устан
 
 
 ## Сеть
+
+Настройки сети вынесены в [network.tf](https://github.com/sizik0ff/Diplom-Sys24/blob/main/Diplom/network.tf)
+
+Созданы 4 подсети:
+
+
 
 Добавляем настройки [security_group.tf](https://github.com/sizik0ff/Diplom-Sys24/blob/main/Diplom/security_group.tf) - для взаимодействия vm между собой, ключевым образом через bastion host 
 
