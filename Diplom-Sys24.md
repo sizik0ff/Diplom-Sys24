@@ -109,8 +109,11 @@ Cоздайте ВМ, разверните на ней Elasticsearch. Устан
 Созданы 4 подсети:
 
 subnet-private1 для web-server-1 \ зона a
+
 subnet-private2 для web-server-2 \ зона b
+
 subnet-private2 для Elasticsearch \ зона d
+
 subnet-public1 для Zabbix, Kibana, ALB, Bastion
 
 + Настройки маршрутизации для приватных сетей
@@ -133,7 +136,7 @@ Ansible считывает всю необходимую информацию и
  
 ```
 [all:vars]
-ansible_ssh_common_args="-o ProxyCommand=\"ssh -q ubuntu@158.160.118.144 -o IdentityFile=~/.ssh/bastion -o Port=22 -W %h:%p\""
+ansible_ssh_common_args="-o ProxyCommand=\"ssh -q ubuntu@158.160.172.204 -o IdentityFile=~/.ssh/bastion -o Port=22 -W %h:%p\""
 ```
 
 Проверка пинга всех хостов 
@@ -157,10 +160,8 @@ ansible_ssh_common_args="-o ProxyCommand=\"ssh -q ubuntu@158.160.118.144 -o Iden
 ![image](https://github.com/sizik0ff/Diplom-Sys24/blob/main/img/19.png)
 
 
-Теперь установим на него Nginx, с помощью роли geerlingguy.nginx [nginx.yml](https://github.com/sizik0ff/Diplom-Sys24/blob/main/Diplom/Ansible/nginx.yml)
+Теперь установим на него Nginx, с помощью роли geerlingguy.nginx и перенесем свою страницу сайта [nginx.yml](https://github.com/sizik0ff/Diplom-Sys24/blob/main/Diplom/Ansible/nginx.yml)
 
-
-После активируется плейбук, который установит нужную нам страницу сайта на сервера [index.yml](https://github.com/sizik0ff/Diplom-Sys24/blob/main/Diplom/Ansible/index.yml)
 
 
 ## Перейдем по ip адресу балансировщика и увидим одностраничный сайт : [158.160.165.106](http://158.160.165.106:80)
