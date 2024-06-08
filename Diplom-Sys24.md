@@ -164,29 +164,29 @@ ansible_ssh_common_args="-o ProxyCommand=\"ssh -q ubuntu@158.160.172.204 -o Iden
 
 
 
-## Перейдем по ip адресу балансировщика и увидим одностраничный сайт : [158.160.165.106](http://158.160.165.106:80)
+## Перейдем по ip адресу балансировщика и увидим одностраничный сайт : [158.160.165.106](http://158.160.160.53:80)
 
 ![image](https://github.com/sizik0ff/Diplom-Sys24/blob/main/img/5.png)
 
 Протестируем сайт: curl -v 
 
 ```
-~/diplom/ansible » curl -v http://158.160.165.106:80                                                                                                                          
-*   Trying 158.160.165.106:80...
-* Connected to 158.160.165.106 (158.160.165.106) port 80 (#0)
+~/diplom/ansible » curl -v http://158.160.160.53:80                                                                                                                       sizik0ff@VD
+*   Trying 158.160.160.53:80...
+* Connected to 158.160.160.53 (158.160.160.53) port 80 (#0)
 > GET / HTTP/1.1
-> Host: 158.160.165.106
+> Host: 158.160.160.53
 > User-Agent: curl/7.81.0
 > Accept: */*
 > 
 * Mark bundle as not supporting multiuse
 < HTTP/1.1 200 OK
 < server: ycalb
-< date: Tue, 04 Jun 2024 07:35:08 GMT
+< date: Sat, 08 Jun 2024 10:41:54 GMT
 < content-type: text/html
 < content-length: 1186
-< last-modified: Mon, 03 Jun 2024 04:01:57 GMT
-< etag: "665d4035-4a2"
+< last-modified: Sat, 08 Jun 2024 07:23:10 GMT
+< etag: "666406de-4a2"
 < accept-ranges: bytes
 < 
 <!DOCTYPE html>
@@ -237,7 +237,7 @@ ansible_ssh_common_args="-o ProxyCommand=\"ssh -q ubuntu@158.160.172.204 -o Iden
     </div>
 </body>
 </html>
-* Connection #0 to host 158.160.165.106 left intact
+* Connection #0 to host 158.160.160.53 left intact
 ```
 ## Мониторинг 
 
@@ -259,7 +259,7 @@ systemctl restart zabbix-server zabbix-agent apache2
 ```
 После заходим на админку, прописываем хостов, создаем удобные графики и списки. 
 
-### Zabbix server доступен по адресу: <http://158.160.112.213/zabbix/>
+### Zabbix server доступен по адресу: <http://158.160.169.173/zabbix/>
 ### Логин: Admin
 ### Пароль: zabbix
 
@@ -321,10 +321,10 @@ ubuntu@fhm6rgj8j62jmbjbaa4f:~$
 ~/diplom/ansible » ansible -i hosts.cfg -m shell -a 'cat /etc/kibana/kibana.yml' kib -b 
 kib | CHANGED | rc=0 >>
 server.host: 0.0.0.0
-elasticsearch.hosts: ["http://192.168.10.20:9200"]
+elasticsearch.hosts: ["http://192.168.30.10:9200"]
 ```
 
-### Зайти на web Elasticsearch <http://158.160.118.215:5601/login/>
+### Зайти на web Elasticsearch <http://158.160.168.121:5601/login/>
 
 ![](https://github.com/sizik0ff/Diplom-Sys24/blob/main/img/10.png)
 
@@ -340,9 +340,6 @@ elasticsearch.hosts: ["http://192.168.10.20:9200"]
 ## Резервное копирование 
 
 Резервное копирование настроенно через [snapshots.tf](https://github.com/sizik0ff/Diplom-Sys24/blob/main/Diplom/snapshots.tf) , на ежедневные снимки, с хранением в 7 дней. 
-
-
-![](https://github.com/sizik0ff/Diplom-Sys24/blob/main/img/13.png)
 
 ![](https://github.com/sizik0ff/Diplom-Sys24/blob/main/img/14.png)
 
