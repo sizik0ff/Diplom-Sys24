@@ -108,6 +108,14 @@ Cоздайте ВМ, разверните на ней Elasticsearch. Устан
 
 Созданы 4 подсети:
 
+subnet-private1 для web-server-1 \ зона a
+subnet-private2 для web-server-2 \ зона b
+subnet-private2 для Elasticsearch \ зона d
+subnet-public1 для Zabbix, Kibana, ALB, Bastion
+
++ Настройки маршрутизации для приватных сетей
+
+![image](https://github.com/sizik0ff/Diplom-Sys24/blob/main/img/2.2.png)
 
 
 Добавляем настройки [security_group.tf](https://github.com/sizik0ff/Diplom-Sys24/blob/main/Diplom/security_group.tf) - для взаимодействия vm между собой, ключевым образом через bastion host 
