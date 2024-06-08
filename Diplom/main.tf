@@ -22,21 +22,6 @@ resource "yandex_vpc_network" "network-1" {
   name = "network1"
 }
 
-### Настройка маршрутизации из локальной сети в интернет 
-
-resource "yandex_vpc_gateway" "nat_gateway" {
-  name = "test-gateway"
-  shared_egress_gateway {}
-}
-
-resource "yandex_vpc_route_table" "route_table" {
-  network_id = yandex_vpc_network.network-1.id
-
-  static_route {
-    destination_prefix = "0.0.0.0/0"
-    gateway_id         = yandex_vpc_gateway.nat_gateway.id
-  }
-}
 
 ### Server 1   
 
@@ -64,25 +49,14 @@ resource "yandex_compute_instance" "vm-1" {
   }
 
   network_interface {
-    subnet_id = "${yandex_vpc_subnet.subnet-1.id}"
+    subnet_id = "${yandex_vpc_subnet.subnet-private1.id}"
     ip_address         = "192.168.10.10"
-    nat       = true
     security_group_ids = [yandex_vpc_security_group.private-sg.id]
   }
 
   metadata = {
     ssh-keys = "ubuntu:${file("/home/sizik0ff/.ssh/id_rsa.pub")}"
   }
-}
-
-### Настройки сети Server 1
-
-
-resource "yandex_vpc_subnet" "subnet-1" {
-  name           = "subnet1"
-  zone           = "${var.zone_a}"
-  network_id     = "${yandex_vpc_network.network-1.id}"
-  v4_cidr_blocks = ["192.168.10.0/24"]
 }
 
 
@@ -112,8 +86,7 @@ resource "yandex_compute_instance" "vm-2" {
   }
 
   network_interface {
-    subnet_id = "${yandex_vpc_subnet.subnet-2.id}"
-    nat       = true
+    subnet_id = "${yandex_vpc_subnet.subnet-private2.id}"
     ip_address         = "192.168.20.10"
     security_group_ids = [yandex_vpc_security_group.private-sg.id]
   }
@@ -124,16 +97,6 @@ resource "yandex_compute_instance" "vm-2" {
 }
 
 
-### Настройки сети Server 2
-
-
-resource "yandex_vpc_subnet" "subnet-2" {
-  name           = "subnet2"
-  zone           = "${var.zone_b}" 
-  network_id     = "${yandex_vpc_network.network-1.id}"
-  v4_cidr_blocks = ["192.168.20.0/24"]
-}
-
 
 ### Настройки таргет группы 
 
@@ -142,11 +105,11 @@ resource "yandex_alb_target_group" "tg-1" {
   name = "tg-1"
 
   target {
-    subnet_id = "${yandex_vpc_subnet.subnet-1.id}"
+    subnet_id = "${yandex_vpc_subnet.subnet-private1.id}"
     ip_address = "${yandex_compute_instance.vm-1.network_interface.0.ip_address}"
   }
   target {
-    subnet_id = "${yandex_vpc_subnet.subnet-2.id}"
+    subnet_id = "${yandex_vpc_subnet.subnet-private2.id}"
     ip_address = "${yandex_compute_instance.vm-2.network_interface.0.ip_address}"
   }
 }
@@ -212,8 +175,8 @@ resource "yandex_alb_load_balancer" "alb-1" {
   
   allocation_policy {
     location {
-      zone_id   = "ru-central1-a"
-      subnet_id = "${yandex_vpc_subnet.subnet-1.id}"
+      zone_id   = "ru-central1-d"
+      subnet_id = "${yandex_vpc_subnet.subnet-public1.id}"
     }
   }
 
@@ -242,8 +205,9 @@ resource "yandex_alb_load_balancer" "alb-1" {
 
 resource "yandex_compute_instance" "zabbix" {
 
-    name = "zabbix"
-  
+  name = "zabbix"
+  zone = "${var.zone_d}" 
+
   platform_id = "standard-v3"
 
   resources {
@@ -264,8 +228,8 @@ resource "yandex_compute_instance" "zabbix" {
   }
 
   network_interface {
-    subnet_id = "${yandex_vpc_subnet.subnet-1.id}"
-    ip_address         = "192.168.10.40"    
+    subnet_id = "${yandex_vpc_subnet.subnet-public1.id}"
+    ip_address = "192.168.50.10"    
     nat       = true
     security_group_ids = ["${yandex_vpc_security_group.private-sg.id}"]
   }
@@ -279,8 +243,9 @@ resource "yandex_compute_instance" "zabbix" {
 
 resource "yandex_compute_instance" "elas" {
 
-    name = "elas"
-  
+  name = "elas"
+  zone = "${var.zone_d}" 
+
   platform_id = "standard-v3"
 
   resources {
@@ -301,10 +266,9 @@ resource "yandex_compute_instance" "elas" {
   }
 
   network_interface {
-    subnet_id = "${yandex_vpc_subnet.subnet-1.id}"
-    ip_address = "192.168.10.20"
-    nat       = true
+    subnet_id = "${yandex_vpc_subnet.subnet-private3.id}"
     security_group_ids = [yandex_vpc_security_group.private-sg.id, yandex_vpc_security_group.elasticsearch-sg.id]
+    ip_address = "192.168.30.10"
   }
     metadata = {
     ssh-keys = "ubuntu:${file("/home/sizik0ff/.ssh/elk.pub")}"
@@ -315,8 +279,9 @@ resource "yandex_compute_instance" "elas" {
 
 resource "yandex_compute_instance" "kib" {
 
-    name = "kib"
-  
+  name = "kib"
+  zone = "${var.zone_d}" 
+
   platform_id = "standard-v3"
 
   resources {
@@ -337,8 +302,8 @@ resource "yandex_compute_instance" "kib" {
   }
 
   network_interface {
-    subnet_id = "${yandex_vpc_subnet.subnet-1.id}"
-    ip_address         = "192.168.10.30"  
+    subnet_id = "${yandex_vpc_subnet.subnet-public1.id}"
+    ip_address         = "192.168.50.20"  
     nat       = true
     security_group_ids =  [yandex_vpc_security_group.private-sg.id, yandex_vpc_security_group.kibana-sg.id]
   }
@@ -352,8 +317,9 @@ resource "yandex_compute_instance" "kib" {
 
 resource "yandex_compute_instance" "bast" {
 
-    name = "bast"
-  
+  name = "bast"
+  zone = "${var.zone_d}" 
+
   platform_id = "standard-v3"
 
   resources {
@@ -374,9 +340,9 @@ resource "yandex_compute_instance" "bast" {
   }
 
   network_interface {
-    subnet_id = "${yandex_vpc_subnet.subnet-1.id}"
-    nat       = true
+    subnet_id = "${yandex_vpc_subnet.subnet-public1.id}"
     security_group_ids =[yandex_vpc_security_group.bastion-sg.id]
+    nat = true
 }
 
   metadata = {
