@@ -30,3 +30,10 @@ variable "zone_b" {
   type        = string
   default     = "value"
 }
+
+
+variable "zone_d" {
+  description = "The zone-d"
+  type        = string
+  default     = "value"
+}
