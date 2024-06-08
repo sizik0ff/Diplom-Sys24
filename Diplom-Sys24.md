@@ -237,9 +237,10 @@ ansible_ssh_common_args="-o ProxyCommand=\"ssh -q ubuntu@158.160.118.144 -o Iden
 Файл конфигурации:
 [zabbix_server.conf](https://github.com/sizik0ff/Diplom-Sys24/blob/main/Diplom/zabbix_server.conf)
 
-Осталось зайти на сервер и выполнить команду:
+Осталось зайти на сервер и выполнить 2 команды:
 ```
 zcat /usr/share/zabbix-sql-scripts/postgresql/server.sql.gz | psql zabbix_db
+systemctl restart zabbix-server zabbix-agent apache2
 ```
 После заходим на админку, прописываем хостов, создаем удобные графики и списки. 
 
