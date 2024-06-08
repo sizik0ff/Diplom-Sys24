@@ -1,5 +1,15 @@
-- name: install nginx
+- name: Установка nginx
   hosts: nginx
   become: yes
   roles:
     - geerlingguy.nginx
+
+  tasks:
+    - name: Copy index.html to Nginx web root
+      copy:
+        src: /home/sizik0ff/diplom/ansible/index.nginx-debian.html
+        dest: /var/www/html/index.nginx-debian.html
+    - name: Restart Nginx
+      service: 
+        name: nginx
+        state: restarted
