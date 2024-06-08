@@ -2,7 +2,7 @@ cluster.name: sizik0ff-elk
 node.name: node-1
 path.data: /var/lib/elasticsearch
 path.logs: /var/log/elasticsearch
-network.host: 192.168.10.20
+network.host: 192.168.30.10
 http.port: 9200
 
 xpack.security.enabled: false
